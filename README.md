@@ -1,10 +1,18 @@
 # askbot installation
 
+###
+
+delete all
+
+	sudo docker ps -a | awk '{print$1}' | xargs --no-run-if-empty sudo docker rm -f
+
+
+
 ### start mysql
 
 Bring up mysql docker:
 
-	mkdir -p /data/mysql
+	sudo mkdir -p /data/mysql
 	sudo docker run --name mysql -p 3306:3306 -v /data/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=M0ngodb! -d mysql
 
 Create askbot database:
@@ -19,8 +27,11 @@ Create askbot database:
 
 
 
-### build docker image
+### build & run docker image locally
 
 	sudo docker build --rm=true -t mongodb-china/askbot .
 
+	# make sure mysql is running,see above steps
+
+	sudo docker run -it --link mysql:mysql -p 8080:8080 mongodb-china/askbot 
 

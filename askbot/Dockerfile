@@ -11,6 +11,6 @@ RUN askbot-setup -n . -e 3 -d askbot -u root -p xxx -domain ask.mongoing.com
 ADD settings.py /opt/ask/settings.py
 ADD setup.sh /opt/ask/setup.sh
 
-RUN python manage.py collectstatic --help
+RUN python manage.py collectstatic 
 ENTRYPOINT  ["/bin/sh", "/opt/ask/setup.sh"]
 
