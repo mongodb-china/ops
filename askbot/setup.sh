@@ -1,16 +1,10 @@
-FROM python:2.7
-RUN apt-get update
-RUN pip install  askbot
-RUN pip install  mysql-python
+#!/bin/sh
 
-RUN mkdir /opt/ask
+cd /opt/ask
 
-WORKDIR /opt/ask
-RUN askbot-setup -n . -e 3 -d askbot -u root -p xxx -domain ask.mongoing.com
+sed -i s/user_id=/id=/g /usr/lib/python2.7/site-packages/askbot-0.10.1-py2.7.egg/askbot/deps/django_authopenid/views.py
+sed -i s/user_id\)/id\)/g /usr/lib/python2.7/site-packages/askbot-0.10.1-py2.7.egg/askbot/deps/django_authopenid/views.py
 
-ADD settings.py /opt/ask/settings.py
-ADD setup.sh /opt/ask/setup.sh
-
-RUN python manage.py collectstatic --help
-ENTRYPOINT  ["/bin/sh", "/opt/ask/setup.sh"]
-
+python manage.py syncdb
+python manage.py migrate
+python manage.py runserver 0.0.0.0:8080
