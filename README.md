@@ -13,13 +13,13 @@ delete all
 Bring up mysql docker:
 
 	sudo mkdir -p /data/mysql
-	sudo docker run --name mysql -p 3306:3306 -v /data/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=M0ngodb! -d mysql
+	sudo docker run --name mysql -p 3306:3306 -v /data/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=xxxxx! -d mysql
 
 Create askbot database:
 
-	sudo docker run --link mysql:mysql -it mysql mysql -h mysql -uroot -pM0ngodb! -e "create database askbot"
+	sudo docker run --link mysql:mysql -it mysql mysql -h mysql -uroot -pxxxxx -e "create database askbot"
 
-	sudo docker run --link mysql:mysql -it mysql mysql -h mysql -uroot -pM0ngodb! -e "ALTER DATABASE  askbot CHARACTER SET utf8 COLLATE utf8_general_ci"
+	sudo docker run --link mysql:mysql -it mysql mysql -h mysql -uroot -pxxxxx -e "ALTER DATABASE  askbot CHARACTER SET utf8 COLLATE utf8_general_ci"
 
 ### start askbot
 
@@ -34,4 +34,5 @@ Create askbot database:
 	# make sure mysql is running,see above steps
 
 	sudo docker run -it --link mysql:mysql -p 8080:8080 mongodb-china/askbot 
-
+	sudo docker run -d --link mysql:mysql -p 8080:8080 mongodb-china/askbot
+	
