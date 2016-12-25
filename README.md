@@ -2,9 +2,9 @@
 
 ###
 
-delete all
+delete all existing askbot container:
 
-	sudo docker ps -a | awk '{print$1}' | xargs --no-run-if-empty sudo docker rm -f
+	sudo docker ps -a | grep askbot | awk '{print$1}' | xargs --no-run-if-empty sudo docker rm -f
 
 
 
