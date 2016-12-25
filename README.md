@@ -1,12 +1,8 @@
 # askbot installation
 
-###
-
-delete all existing askbot container:
+### delete existing askbot container:
 
 	sudo docker ps -a | grep askbot | awk '{print$1}' | xargs --no-run-if-empty sudo docker rm -f
-
-
 
 ### start mysql
 
@@ -18,14 +14,13 @@ Bring up mysql docker:
 Create askbot database:
 
 	sudo docker run --link mysql:mysql -it mysql mysql -h mysql -uroot -pxxxxx -e "create database askbot"
-
-	sudo docker run --link mysql:mysql -it mysql mysql -h mysql -uroot -pxxxxx -e "ALTER DATABASE  askbot CHARACTER SET utf8 COLLATE utf8_general_ci"
+	sudo docker run --link mysql:mysql -it mysql mysql -h mysql -uroot -pxxxxx -e "ALTER DATABASE askbot CHARACTER SET utf8 COLLATE utf8_general_ci"
+	sudo docker run --link mysql:mysql -it mysql mysql -h mysql -uroot -pxxxxx -e "CREATE USER [user]@'%' IDENTIFIED BY '[password]';"
+	sudo docker run --link mysql:mysql -it mysql mysql -h mysql -uroot -pxxxxx -e "GRANT ALL ON askbot.* TO [user]@'%';"
 
 ### start askbot
 
 	sudo docker run --name askbot --link mysql:mysql -p 8080:8080 -d mongodb-china/askbot
-
-
 
 ### build & run docker image locally
 
