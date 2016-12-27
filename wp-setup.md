@@ -67,7 +67,7 @@
     
 2.1.3恢复数据库数据
 
-    gunzip < /home/xinghua/backup_2016-12-22-1137_MongoDB_a5c35040332a-db.gz | mysql -uroot -pwp123456 -h127.0.0.1 bitnami_wordpress
+    gunzip < /home/xinghua/backup_2016-12-22-1137_MongoDB_a5c35040332a-db.gz | mysql -uroot -pxxxxxx -h127.0.0.1 bitnami_wordpress
 /home/xinghua/backup_2016-12-22-1137_MongoDB_a5c35040332a-db.gz 是HK服务器中，自动备份出的mysql数据库备份文件
 
 ### 2.2 wordpress镜像
