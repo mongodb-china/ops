@@ -1,4 +1,4 @@
-FROM python:2.7
+FROM hub.c.163.com/library/python:2.7
 RUN apt-get update
 RUN pip install  askbot
 RUN pip install  mysql-python
