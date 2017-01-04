@@ -1,7 +1,7 @@
 FROM hub.c.163.com/library/python:2.7
 RUN apt-get update
-RUN pip install  askbot
-RUN pip install  mysql-python
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple askbot
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple mysql-python
 
 RUN mkdir /opt/ask
 
