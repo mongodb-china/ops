@@ -1,4 +1,5 @@
 FROM hub.c.163.com/library/python:2.7
+ADD sources.list /etc/apt/sources.list
 RUN apt-get update
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple askbot
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple mysql-python
