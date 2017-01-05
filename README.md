@@ -17,10 +17,6 @@ Create askbot database:
 	sudo docker run --link mysql:mysql -it hub.c.163.com/library/mysql:5.5.54 mysql -h mysql -uroot -p[password] -e "ALTER DATABASE askbot CHARACTER SET utf8 COLLATE utf8_general_ci;"
 	sudo docker run --link mysql:mysql -it hub.c.163.com/library/mysql:5.5.54 mysql -h mysql -uroot -p[password] -e "CREATE USER [user]@'%' IDENTIFIED BY '[password]';"
 	sudo docker run --link mysql:mysql -it hub.c.163.com/library/mysql:5.5.54 mysql -h mysql -uroot -p[password] -e "GRANT ALL ON askbot.* TO [user]@'%';"
-	
-### start askbot
-
-	sudo docker run --name mongo-askbot --link mysql:mysql -p 8081:8080 -d mongodb-china/askbot
 
 ### build & run docker image locally
 
@@ -28,8 +24,14 @@ Create askbot database:
 
 	# make sure mysql is running,see above steps
 	# this will start a new container
-	sudo docker run --name mongo-askbot -it --link mysql:mysql -p 8081:8080 mongodb-china/askbot 
-	sudo docker run --name mongo-askbot -d --link mysql:mysql -p 8081:8080 mongodb-china/askbot
+	sudo docker run --name mongo-askbot -it --link mysql:mysql -p 8081:8080 mongodb-china/askbot # interactive mode
+	sudo docker run --name mongo-askbot -d --link mysql:mysql -p 8081:8080 mongodb-china/askbot # as daemon
+	
 	# if the container already exits:
 	sudo docker start mongo-askbot
 	
+### nginx configuration
+	# in the askbot direcotry
+	sudo cp askbot /etc/nginx/sites-available/
+	cd /etc/nginx/sites-enabled/
+	sudo ln -s ../sites-available/askbot askbot
