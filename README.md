@@ -27,6 +27,9 @@ Create askbot database:
 	sudo docker build --rm=true -t mongodb-china/askbot .
 
 	# make sure mysql is running,see above steps
+	# this will start a new container
 	sudo docker run --name mongo-askbot -it --link mysql:mysql -p 8081:8080 mongodb-china/askbot 
 	sudo docker run --name mongo-askbot -d --link mysql:mysql -p 8081:8080 mongodb-china/askbot
+	# if the container already exits:
+	sudo docker start mongo-askbot
 	
