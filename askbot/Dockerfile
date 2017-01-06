@@ -3,6 +3,7 @@ ADD sources.list /etc/apt/sources.list
 RUN apt-get update
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple askbot
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple mysql-python
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple python_wordpress_xmlrpc
 
 RUN mkdir /opt/ask
 
