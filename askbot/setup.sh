@@ -4,6 +4,7 @@ cd /opt/ask
 
 sed -i s/user_id=/id=/g /usr/local/lib/python2.7/site-packages/askbot/deps/django_authopenid/views.py
 sed -i s/user_id\)/id\)/g /usr/local/lib/python2.7/site-packages/askbot/deps/django_authopenid/views.py
+sed -i s/\'user_id\'/\'id\'/g /usr/local/lib/python2.7/site-packages/askbot/deps/django_authopenid/backends.py
 
 python manage.py syncdb
 python manage.py makemigrations
