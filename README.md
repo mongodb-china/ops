@@ -24,6 +24,7 @@ Create askbot database:
 
 	# this will start a new container
 	# interactive mode. run this mode first to make sure everything goes alright.
+	# note this step will also ask you to create a root user for Django, which will be used later as askbot administrator
 	sudo docker run --name mongo-askbot -it --link mysql:mysql -p 8081:8080 mongodb-china/askbot
 	
 	# if the last step succeeds
